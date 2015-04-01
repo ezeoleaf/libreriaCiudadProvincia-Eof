@@ -5478,7 +5478,7 @@ function setProvincia(inputProvincia)
 	var htmlToAdd = '<option value="0">Seleccione una provincia</option>';
 	$.each(provinciaDictionary, function(key, value)
 	{
-		htmlToAdd += '<option value="'+key+'">'+value+'</option>';
+		htmlToAdd += '<option value="'+key+'">'+firstUpper(value)+'</option>';
 	});
 
 	$('#'+inputProvincia).html(htmlToAdd);
@@ -5493,7 +5493,7 @@ function setCiudad(idProvincia, inputCiudad)
 		if(idProvincia == value.substring(0,idProvincia.length))
 		{
 			vValue = value.split('/--/');
-			htmlToAdd += '<option value="'+key+'">'+vValue[1]+'</option>';
+			htmlToAdd += '<option value="'+key+'">'+firstUpper(vValue[1])+'</option>';
 			entro = 1;
 		}
 		else
@@ -5506,4 +5506,20 @@ function setCiudad(idProvincia, inputCiudad)
 	});
 
 	$('#'+inputCiudad).html(htmlToAdd);
+}
+
+function firstUpper(string){
+	string = string.toLowerCase();
+	var returnString = "";
+	vString = string.split(' ');
+	for(var i = 0; i < vString.length;i++)
+	{
+		returnString += vString[i].charAt(0).toUpperCase() + vString[i].slice(1);
+		if(i != vString.length - 1)
+		{
+			returnString += ' ';
+		}
+	}
+	
+  	return returnString;
 }
